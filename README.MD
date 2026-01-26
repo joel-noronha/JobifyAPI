@@ -1,25 +1,12 @@
 #### Project Setup
 
-In order to spin up the project, in the root create .env with these two variables, with your own values.
+To run the project, in the root create a .env file and add these two variables, with your own values.
 
 MONGO_URI
 JWT_SECRET
 
-After that run this command
+Then run this command
 
 ```bash
 npm install && npm start
-```
-
-Swagger UI
-
-```yaml
-/jobs/{id}:
-  parameters:
-    - in: path
-      name: id
-      schema:
-        type: string
-      required: true
-      description: the job id
 ```
