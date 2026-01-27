@@ -1,0 +1,205 @@
+openapi: 3.0.0
+
+info:
+  title: Jobify API
+  version: "1.0.0"
+  description: API for authentication and job management
+
+servers:
+  - url: https://jobifyapi-5g04.onrender.com/api/v1
+
+tags:
+  - name: Auth
+    description: Authentication routes
+  - name: Jobs
+    description: Job management routes
+
+paths:
+  /auth/register:
+    post:
+      tags:
+        - Auth
+      summary: Register user
+      operationId: register
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterRequest"
+      responses:
+        "201":
+          description: User registered successfully
+        "400":
+          description: Invalid input
+
+  /auth/login:
+    post:
+      tags:
+        - Auth
+      summary: Login user
+      operationId: login
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginRequest"
+      responses:
+        "200":
+          description: Login successful
+        "401":
+          description: Invalid credentials
+
+  /jobs:
+    post:
+      tags:
+        - Jobs
+      summary: Create job
+      operationId: createJob
+      security:
+        - bearer: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateJobRequest"
+      responses:
+        "201":
+          description: Job created
+        "401":
+          description: Unauthorized
+
+    get:
+      tags:
+        - Jobs
+      summary: Get all jobs
+      operationId: getAllJobs
+      security:
+        - bearer: []
+      responses:
+        "200":
+          description: Jobs fetched successfully
+        "401":
+          description: Unauthorized
+
+  /jobs/{id}:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        description: Job ID
+
+    get:
+      tags:
+        - Jobs
+      summary: Get single job
+      operationId: getJob
+      security:
+        - bearer: []
+      responses:
+        "200":
+          description: Job fetched successfully
+        "404":
+          description: Job not found
+
+    patch:
+      tags:
+        - Jobs
+      summary: Update job
+      operationId: updateJob
+      security:
+        - bearer: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateJobRequest"
+      responses:
+        "200":
+          description: Job updated
+        "404":
+          description: Job not found
+
+    delete:
+      tags:
+        - Jobs
+      summary: Delete job
+      operationId: deleteJob
+      security:
+        - bearer: []
+      responses:
+        "200":
+          description: Job deleted
+        "404":
+          description: Job not found
+
+components:
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    RegisterRequest:
+      type: object
+      required:
+        - name
+        - email
+        - password
+      properties:
+        name:
+          type: string
+          example: Joel
+        email:
+          type: string
+          example: test@gmail.com
+        password:
+          type: string
+          example: pass123
+
+    LoginRequest:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          example: test@gmail.com
+        password:
+          type: string
+          example: pass123
+
+    CreateJobRequest:
+      type: object
+      required:
+        - company
+        - position
+      properties:
+        company:
+          type: string
+          example: Infosys
+        position:
+          type: string
+          example: Software Engineer
+
+    UpdateJobRequest:
+      type: object
+      required:
+        - company
+        - position
+      properties:
+        company:
+          type: string
+          example: Infosys
+        position:
+          type: string
+          example: Senior Engineer
