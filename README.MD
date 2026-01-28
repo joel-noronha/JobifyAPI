@@ -13,6 +13,24 @@ npm install && npm start
 
 #### Endpoints
 
+## API Endpoints
+
+### Authentication
+| Method | Endpoint | Description |
+|------|---------|-------------|
+| POST | `/auth/register` | Register a new user |
+| POST | `/auth/login` | Login user |
+
+### Jobs
+| Method | Endpoint | Description |
+|------|---------|-------------|
+| POST | `/jobs` | Create a new job |
+| GET | `/jobs` | Get all jobs |
+| GET | `/jobs/{id}` | Get a single job |
+| PATCH | `/jobs/{id}` | Update job details |
+| DELETE | `/jobs/{id}` | Delete a job |
+
+
 #### Swagger screenshot
 
 <p align="center">
