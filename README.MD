@@ -1,4 +1,4 @@
-#### Project Setup
+## Project Setup
 
 To run the project, in the root create a .env file and add these two variables, with your own values.
 
@@ -10,8 +10,6 @@ Then run this command
 ```bash
 npm install && npm start
 ```
-
-#### Endpoints
 
 ## API Endpoints
 
@@ -30,8 +28,10 @@ npm install && npm start
 | PATCH | `/jobs/{id}` | Update job details |
 | DELETE | `/jobs/{id}` | Delete a job |
 
+> Base URL: `https://api.example.com/api/v1`  
+> Authentication: Bearer Token (required for Jobs endpoints)
 
-#### Swagger screenshot
+## Swagger screenshot
 
 <p align="center">
   <img src="assets/ss.png" width="600" />
