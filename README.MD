@@ -10,3 +10,11 @@ Then run this command
 ```bash
 npm install && npm start
 ```
+
+#### Endpoints
+
+#### Swagger screenshot
+
+<p align="center">
+  <img src="assets/ss.png" width="600" />
+</p>
